@@ -3,18 +3,21 @@ kind: ImageStream
 metadata:
   name: oc-sample
   namespace: azdn949-dev
+  labels:
+    build: oc-sample
 ---
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
   name: oc-sample
   namespace: azdn949-dev
+  labels:
+    build: oc-sample
 spec:
   source:
     type: Git
     git:
-      uri: https://github.com
-      ref: main
+      uri: https://github.com/azdn949/oc-sample.git
   strategy:
     type: Docker
     dockerStrategy:
