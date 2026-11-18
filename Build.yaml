@@ -1,0 +1,27 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: oc-sample
+  namespace: azdn949-dev
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: oc-sample
+  namespace: azdn949-dev
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: oc-sample:latest
+  triggers:
+    - type: ConfigChange
